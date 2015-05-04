@@ -1,0 +1,2 @@
+outfile : ex.c func.c
+	gcc -o outfile ex.c func.c -I.

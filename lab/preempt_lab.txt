@@ -1,0 +1,32 @@
+/*References:
+1. Text Book SGGv9 Section 5.9.2
+2. Robert Love, "Linux Kernel Development", 2/E, Sams Publishing. Online: http://www.makelinux.net/books/lkd2/ch09lev1sec9
+3. Enable Linux Kernel Preemption, http://www.cyberciti.biz/faq/how-do-i-enable-kernel-preemption-in-linux/
+4. Compiling the Linux Kernel RT, http://linuxaudio.it/index.php/Latenza
+
+Linux uses an interesting approach to disable and enable kernel preemption. It provides two simple system calls—preempt_disable() and preempt_enable()—for disabling and enabling kernel preemption. The kernel is not preemptible, however, if a task running in the kernel is holding a lock. To enforce this rule, each task in the system has a thread-info structure containing a counter, preempt count, to indicate the number of locks being held by the task. When a lock is acquired, preempt count is incremented. It is decremented when a lock is released. If the value of preempt count for the task currently running in the kernel is greater than 0, it is not safe to preempt the kernel, as this task currently holds a lock. If the count is 0, the kernel can safely be interrupted (assuming there are no outstanding calls to preempt_disable()).
+Spinlocks—along with enabling and disabling kernel preemption—are used in the kernel only when a lock (or disabling kernel preemption) is held for a short duration. When a lock must be held for a longer period, semaphores or mutex locks are appropriate for use.
+[Ref 1]
+
+Similar to Atomic and Mutex lock, we need to disable pre-emption to let critical section of one process get over and avoid race-condition.
+preempt_disable();
+/* Execute critical section here at the cost of high priority process waiting for CPU */
+preempt_enable();
+
+INSTRUCTIONS: 
+Answer the following questions using fewest words and submit on blackboard:
+1. In what way non-preemptive kernels like pre-Linux-2.6 are better? 
+2. What steps needs to be followed to turn on kernel preemption on the machine you are using currently? Please do not Paste your answer from [Ref 3] above.
+3. What problem do you foresee in using kernel preemptions on SMP machines?
+*/
+
+
+ANSWERS :
+1 > A non preemptive kernel allows all processes to run till completion. This can be an advantage in certain situations. 
+
+2 > The kernel compile config options must be set to enable and the kernel must be recompiled before preemptions are enabled.
+
+3 > Using preemptions increases the programming complexity with the need to having to handle more end-cases, perform more fine grained locking or use lock-less structures and algorithms.
+ 
+
+

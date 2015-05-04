@@ -1,0 +1,37 @@
+##########Make File in Multi-File Demo###############################
+#	@(#)File:           $CVSfile: Makefile,v $
+#	@(#)Version:        $Revision: 0.1 $
+#	@(#)Last changed:   $Date: 2015/03/16 23:20:00 $
+#	@(#)Purpose:        Demo of Multi-File Code and Make utility
+#	@(#)Author:         Narendra Shukla
+#	@(#)Copyright:      (C) NS 2015-16
+#	@(#)Product:        :CSD 204 Operating Systems Lab
+#####################################################################
+all: main.o printstring.o
+	gcc -g -o ../bin/newfinal ../obj/main.o ../obj/printstring.o
+
+main.o:
+	gcc -g -o ../obj/main.o -Wall -c ../src/main.c -I../include
+
+printstring.o:
+	gcc -g -o ../obj/printstring.o -Wall -c ../src/printstring.c -I../include
+
+clean:
+	rm ../bin/newfinal ../bin/final 2>/dev/null
+	rm ../obj/*.o 2>/dev/null
+	rm ../src/*~ ../src/*.o ../src/a.out 2>/dev/null
+	rm ../include/*~ 2>/dev/null
+	rm ../doc/*~ 2>/dev/null
+	rm *~ 2>/dev/null
+
+##############################################################################
+# Generalized Line in Make file:
+#-------------------------------
+# TargetName: Dependencies
+# <Tab>	Rules to make The Target
+# Now All dependencies in above Target become new target using same semantics
+##############################################################################
+
+
+
+

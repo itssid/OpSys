@@ -1,0 +1,6 @@
+A list of commands:
+less : To view text files.
+file : View file contents.
+ln : create links between files. Usefull for creating custom sh launchers.
+ps : list of processes
+kill : kill a given process by using the proces id and setting kill flag[SIGINT, SIGTERM,SIGKILL] in increasing levels of harshness.

@@ -1,0 +1,7 @@
+The following is the default for makefile :
+
+objname : depend1.c depend2.c ...
+	gcc -o objname depend1.c depend2.c ...
+
+The dependencies or the list of files on which the command depends are put on the first line
+so that the command is executed if any of those files change. 

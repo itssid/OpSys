@@ -1,0 +1,13 @@
+# Very Simple Make file to let you compile your modified code. You are free to edit it and use macros to make it more efficient.         
+all: atomic_lab.o mutexlock_lab.o
+	gcc -Wall -lpthread -o atomic atomic_lab.o
+	gcc -Wall -lpthread -o mutex mutexlock_lab.o
+
+atomic_lab.o:
+	gcc  -Wall -c atomic_lab.c -lpthread
+
+mutexlock_lab.o:
+	gcc  -Wall -c mutexlock_lab.c -lpthread
+	
+clean:
+	rm  *.o atomic mutex 

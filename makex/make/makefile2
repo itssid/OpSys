@@ -1,0 +1,14 @@
+CC = gcc
+CFLAGS = -I.
+
+ODIR =../obj
+SDIR =../src
+IDIR =../include
+ODEP =../obj/ex.o ../obj/func.o
+
+../obj/ex.o : ../obj/ex.c 
+	$(CC) -c -o ../obj/func.o ../obj/ex.c $(CFLAGS)
+../obj/func.o : ../obj/func.c 
+	$(CC) -c -o ../obj/func.o ../obj/func.c $(CFLAGS)
+../bin/outfile : ../obj/ex.o ../obj/func.o 
+	$(CC) -o ../bin/outfile ../obj/ex.o ../obj/func.o $(CFLAGS)
